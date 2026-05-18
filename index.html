@@ -22,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -186,7 +151,7 @@ window.Quarto = {
 </section>
 <section id="exploring-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-the-data">Exploring the Data</h2>
-<div id="61e22c57" class="cell" data-execution_count="2">
+<div id="aab62113" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>              Mean  Median  Std Dev     N
 Non-customer  3.47     3.0     2.23  1019
@@ -195,7 +160,7 @@ Customer      4.13     4.0     2.55   481</code></pre>
 </div>
 <section id="patent-counts-by-customer-status" class="level3">
 <h3 class="anchored" data-anchor-id="patent-counts-by-customer-status">Patent Counts by Customer Status</h3>
-<div id="3be977b3" class="cell" data-execution_count="3">
+<div id="815517f6" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -208,7 +173,7 @@ Customer      4.13     4.0     2.55   481</code></pre>
 </section>
 <section id="regional-distribution" class="level3">
 <h3 class="anchored" data-anchor-id="regional-distribution">Regional Distribution</h3>
-<div id="070725f9" class="cell" data-execution_count="4">
+<div id="f61048ec" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -217,7 +182,7 @@ Customer      4.13     4.0     2.55   481</code></pre>
 </div>
 </div>
 </div>
-<div id="5ed6003c" class="cell" data-execution_count="5">
+<div id="318e5f36" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-stdout">
 <pre><code>           Non-customer  Customer  Cust %
 region                                   
@@ -232,7 +197,7 @@ Southwest           245        52    17.5</code></pre>
 </section>
 <section id="firm-age-distribution" class="level3">
 <h3 class="anchored" data-anchor-id="firm-age-distribution">Firm Age Distribution</h3>
-<div id="ddd4d517" class="cell" data-execution_count="6">
+<div id="bdac6f86" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -241,7 +206,7 @@ Southwest           245        52    17.5</code></pre>
 </div>
 </div>
 </div>
-<div id="98186549" class="cell" data-execution_count="7">
+<div id="b9c5c78a" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-stdout">
 <pre><code>Non-customers: mean=26.1, median=25.5, std=6.9
 Customers: mean=26.9, median=26.5, std=7.8</code></pre>
@@ -274,16 +239,10 @@ f(Y_i \mid \lambda) = \frac{e^{-\lambda}\lambda^{Y_i}}{Y_i!}
 </section>
 <section id="coding-the-log-likelihood" class="level3">
 <h3 class="anchored" data-anchor-id="coding-the-log-likelihood">Coding the Log-Likelihood</h3>
-<div id="c9f176de" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson_loglikelihood(lam, Y):</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Log-likelihood of iid Poisson(lam) for observed counts Y."""</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(Y)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>n <span class="op">*</span> lam <span class="op">+</span> np.<span class="bu">sum</span>(Y) <span class="op">*</span> np.log(lam) <span class="op">-</span> np.<span class="bu">sum</span>(gammaln(np.array(Y) <span class="op">+</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 </section>
 <section id="visualizing-the-log-likelihood" class="level3">
 <h3 class="anchored" data-anchor-id="visualizing-the-log-likelihood">Visualizing the Log-Likelihood</h3>
-<div id="923a81ec" class="cell" data-execution_count="9">
+<div id="a5d15e2a" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -304,7 +263,7 @@ f(Y_i \mid \lambda) = \frac{e^{-\lambda}\lambda^{Y_i}}{Y_i!}
 </section>
 <section id="numerical-confirmation" class="level3">
 <h3 class="anchored" data-anchor-id="numerical-confirmation">Numerical Confirmation</h3>
-<div id="3ea3aacb" class="cell" data-execution_count="10">
+<div id="e071898e" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-stdout">
 <pre><code>MLE via optimizer : 3.684667
 Sample mean  Ȳ   : 3.684667
@@ -327,12 +286,6 @@ Y_i \sim \text{Poisson}(\lambda_i), \qquad \lambda_i = \exp(X_i'\beta)
 </section>
 <section id="updating-the-log-likelihood" class="level3">
 <h3 class="anchored" data-anchor-id="updating-the-log-likelihood">Updating the Log-Likelihood</h3>
-<div id="6b499ef1" class="cell" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson_regression_loglikelihood(beta, Y, X):</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Log-likelihood for Poisson regression with log link."""</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    lam <span class="op">=</span> np.exp(X <span class="op">@</span> beta)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(Y <span class="op">*</span> np.log(lam) <span class="op">-</span> lam <span class="op">-</span> gammaln(Y <span class="op">+</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 </section>
 <section id="building-the-design-matrix-x" class="level3">
 <h3 class="anchored" data-anchor-id="building-the-design-matrix-x">Building the Design Matrix <span class="math inline">\(X\)</span></h3>
@@ -343,7 +296,7 @@ Y_i \sim \text{Poisson}(\lambda_i), \qquad \lambda_i = \exp(X_i'\beta)
 </section>
 <section id="results" class="level3">
 <h3 class="anchored" data-anchor-id="results">Results</h3>
-<div id="70297402" class="cell" data-execution_count="14">
+<div id="954bfce9" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-stdout">
 <pre><code>            Coefficient  Std Error  exp(β)
 intercept       -0.4797     0.1832  0.6189
@@ -372,14 +325,14 @@ iscustomer       0.2076     0.0309  1.2307</code></pre>
 <section id="the-effect-of-blueprintys-software" class="level2">
 <h2 class="anchored" data-anchor-id="the-effect-of-blueprintys-software">The Effect of Blueprinty’s Software</h2>
 <p>A coefficient of 0.21 is hard to communicate to a non-technical audience. To make the result more concrete, we use a <strong>counterfactual</strong> approach: take every firm in the dataset, predict how many patents they’d be expected to get if they were <em>not</em> a Blueprinty customer, then predict again as if they <em>were</em>. The average difference is our estimate of the software’s effect.</p>
-<div id="95865365" class="cell" data-execution_count="15">
+<div id="e28ba929" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-stdout">
 <pre><code>Average predicted patents (non-customer) : 3.4362
 Average predicted patents (customer)     : 4.2290
 Average treatment effect                 : 0.7928</code></pre>
 </div>
 </div>
-<div id="a6302ced" class="cell" data-execution_count="16">
+<div id="631ed0dd" class="cell" data-execution_count="16">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
