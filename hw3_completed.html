@@ -186,7 +186,7 @@ window.Quarto = {
 </section>
 <section id="exploring-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-the-data">Exploring the Data</h2>
-<div id="5c80da70" class="cell" data-execution_count="2">
+<div id="15d9a7c7" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>              Mean  Median  Std Dev     N
 Non-customer  3.47     3.0     2.23  1019
@@ -195,7 +195,7 @@ Customer      4.13     4.0     2.55   481</code></pre>
 </div>
 <section id="patent-counts-by-customer-status" class="level3">
 <h3 class="anchored" data-anchor-id="patent-counts-by-customer-status">Patent Counts by Customer Status</h3>
-<div id="3b7474cd" class="cell" data-execution_count="3">
+<div id="6ac46a88" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -208,7 +208,7 @@ Customer      4.13     4.0     2.55   481</code></pre>
 </section>
 <section id="regional-distribution" class="level3">
 <h3 class="anchored" data-anchor-id="regional-distribution">Regional Distribution</h3>
-<div id="5fcafe18" class="cell" data-execution_count="4">
+<div id="1a1bab0b" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -217,7 +217,7 @@ Customer      4.13     4.0     2.55   481</code></pre>
 </div>
 </div>
 </div>
-<div id="86a20a0a" class="cell" data-execution_count="5">
+<div id="8f4fbac0" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-stdout">
 <pre><code>           Non-customer  Customer  Cust %
 region                                   
@@ -232,7 +232,7 @@ Southwest           245        52    17.5</code></pre>
 </section>
 <section id="firm-age-distribution" class="level3">
 <h3 class="anchored" data-anchor-id="firm-age-distribution">Firm Age Distribution</h3>
-<div id="8dd8b54f" class="cell" data-execution_count="6">
+<div id="56cfa3f0" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -241,7 +241,7 @@ Southwest           245        52    17.5</code></pre>
 </div>
 </div>
 </div>
-<div id="b041911c" class="cell" data-execution_count="7">
+<div id="1843439d" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-stdout">
 <pre><code>Non-customers: mean=26.1, median=25.5, std=6.9
 Customers: mean=26.9, median=26.5, std=7.8</code></pre>
@@ -274,7 +274,7 @@ f(Y_i \mid \lambda) = \frac{e^{-\lambda}\lambda^{Y_i}}{Y_i!}
 </section>
 <section id="coding-the-log-likelihood" class="level3">
 <h3 class="anchored" data-anchor-id="coding-the-log-likelihood">Coding the Log-Likelihood</h3>
-<div id="573bfb54" class="cell" data-execution_count="8">
+<div id="c818e444" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson_loglikelihood(lam, Y):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Log-likelihood of iid Poisson(lam) for observed counts Y."""</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(Y)</span>
@@ -283,7 +283,7 @@ f(Y_i \mid \lambda) = \frac{e^{-\lambda}\lambda^{Y_i}}{Y_i!}
 </section>
 <section id="visualizing-the-log-likelihood" class="level3">
 <h3 class="anchored" data-anchor-id="visualizing-the-log-likelihood">Visualizing the Log-Likelihood</h3>
-<div id="de8c8c46" class="cell" data-execution_count="9">
+<div id="28512c3a" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -304,7 +304,7 @@ f(Y_i \mid \lambda) = \frac{e^{-\lambda}\lambda^{Y_i}}{Y_i!}
 </section>
 <section id="numerical-confirmation" class="level3">
 <h3 class="anchored" data-anchor-id="numerical-confirmation">Numerical Confirmation</h3>
-<div id="9fac3a39" class="cell" data-execution_count="10">
+<div id="2e546a7b" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-stdout">
 <pre><code>MLE via optimizer : 3.684667
 Sample mean  Ȳ   : 3.684667
@@ -327,7 +327,7 @@ Y_i \sim \text{Poisson}(\lambda_i), \qquad \lambda_i = \exp(X_i'\beta)
 </section>
 <section id="updating-the-log-likelihood" class="level3">
 <h3 class="anchored" data-anchor-id="updating-the-log-likelihood">Updating the Log-Likelihood</h3>
-<div id="3b92643c" class="cell" data-execution_count="11">
+<div id="dbe223e1" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson_regression_loglikelihood(beta, Y, X):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Log-likelihood for Poisson regression with log link."""</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    lam <span class="op">=</span> np.exp(X <span class="op">@</span> beta)</span>
@@ -343,7 +343,7 @@ Y_i \sim \text{Poisson}(\lambda_i), \qquad \lambda_i = \exp(X_i'\beta)
 </section>
 <section id="results" class="level3">
 <h3 class="anchored" data-anchor-id="results">Results</h3>
-<div id="621ca947" class="cell" data-execution_count="14">
+<div id="e863f5c0" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-stdout">
 <pre><code>            Coefficient  Std Error  exp(β)
 intercept       -0.4797     0.1832  0.6189
@@ -372,14 +372,27 @@ iscustomer       0.2076     0.0309  1.2307</code></pre>
 <section id="the-effect-of-blueprintys-software" class="level2">
 <h2 class="anchored" data-anchor-id="the-effect-of-blueprintys-software">The Effect of Blueprinty’s Software</h2>
 <p>A coefficient of 0.21 is hard to communicate to a non-technical audience. To make the result more concrete, we use a <strong>counterfactual</strong> approach: take every firm in the dataset, predict how many patents they’d be expected to get if they were <em>not</em> a Blueprinty customer, then predict again as if they <em>were</em>. The average difference is our estimate of the software’s effect.</p>
-<div id="b5449cc3" class="cell" data-execution_count="15">
+<div id="37f6d6a3" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-stdout">
 <pre><code>Average predicted patents (non-customer) : 3.4362
 Average predicted patents (customer)     : 4.2290
 Average treatment effect                 : 0.7928</code></pre>
 </div>
 </div>
-<div id="169b4227" class="cell" data-execution_count="16">
+<div id="81a09af4" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>ax.hist(y_hat_0, bins<span class="op">=</span><span class="dv">40</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, color<span class="op">=</span>BLUE,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="ss">f'Non-customer (mean=</span><span class="sc">{</span>y_hat_0<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss">)'</span>, density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>ax.hist(y_hat_1, bins<span class="op">=</span><span class="dv">40</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, color<span class="op">=</span>ORANGE,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="ss">f'Customer (mean=</span><span class="sc">{</span>y_hat_1<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss">)'</span>, density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>ax.axvline(y_hat_0.mean(), color<span class="op">=</span>BLUE, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>ax.axvline(y_hat_1.mean(), color<span class="op">=</span>ORANGE, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Predicted patents (5-year total)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Density'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Counterfactual Patent Predictions'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
